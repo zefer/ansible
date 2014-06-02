@@ -1,3 +1,6 @@
+- name: create library update cron
+  cron: name="update music library" hour="4" job="/usr/bin/mpc update"
+
 - name: copy bbc radios script
   copy: src=bbc.sh dest=/root/bbc.sh mode=0755
 
