@@ -1,3 +1,11 @@
+- name: enable cron
+  lineinfile: >
+    dest=/var/www/command/orion_optimize.sh
+    backup=true
+    regexp="^(killall.*cron)"
+    line="#\1"
+    backrefs=true
+
 - name: create library update cron
   cron: name="update music library" hour="4" job="/usr/bin/mpc update"
 
