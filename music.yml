@@ -1,0 +1,4 @@
+- hosts: music
+  sudo: true
+  roles:
+    - mpdscribble

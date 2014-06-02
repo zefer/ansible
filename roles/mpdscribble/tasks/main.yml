@@ -1,0 +1,13 @@
+- name: install mpdscribble
+  apt: name=mpdscribble update_cache=true
+
+- name: configure mpdscribble
+  template: >
+    src=mpdscribble.conf dest=/etc/mpdscribble.conf
+    backup=yes mode=0640
+  template: >
+    src=mpdscribble dest=/etc/default/mpdscribble
+    backup=yes mode=0644
+
+- name: restart mpdsribble
+  service: name=mpdscribble state=restarted
