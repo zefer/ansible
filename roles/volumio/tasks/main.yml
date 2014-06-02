@@ -1,0 +1,2 @@
+- name: copy bbc radios script
+  copy: src=bbc.sh dest=/root/bbc.sh mode=0755
