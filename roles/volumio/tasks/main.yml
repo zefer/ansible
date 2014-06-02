@@ -1,2 +1,5 @@
 - name: copy bbc radios script
   copy: src=bbc.sh dest=/root/bbc.sh mode=0755
+
+- name: create bbc.sh cron
+  cron: name="update bbc feeds" hour="*/1" job="/bin/bash /root/bbc.sh"
