@@ -7,7 +7,7 @@
     backrefs=true
 
 - name: create library update cron
-  cron: name="update music library" hour="4" job="/usr/bin/mpc update"
+  cron: name="update music library" weekday="0" hour="4" job="/usr/bin/mpc update"
 
 - name: copy check-system script
   copy: src=check-system.sh dest=/root/check-system.sh mode=0744
