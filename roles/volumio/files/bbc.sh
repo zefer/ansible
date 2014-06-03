@@ -1,10 +1,9 @@
-
 #!/bin/bash
 set -e
-playlistdir=/var/lib/mpd/music/WEBRADIO
+playlistdir=/var/lib/mpd/music/BBCRADIO
+mkdir -p $playlistdir
 
 declare -A radios
-radios["Default"]="http://www.bbc.co.uk/radio/listen/live/r4_aaclca.pls"
 radios["BBC Radio 1"]="http://www.bbc.co.uk/radio/listen/live/r1_aaclca.pls"
 radios["BBC Radio 2"]="http://www.bbc.co.uk/radio/listen/live/r2_aaclca.pls"
 radios["BBC Radio 3"]="http://www.bbc.co.uk/radio/listen/live/r3_aaclca.pls"
