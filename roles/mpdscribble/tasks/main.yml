@@ -1,10 +1,12 @@
 - name: install mpdscribble
   apt: name=mpdscribble update_cache=true
 
-- name: configure mpdscribble
+- name: configure mpdscribble with last.fm credentials
   template: >
     src=mpdscribble.conf dest=/etc/mpdscribble.conf
     backup=yes mode=0640
+
+- name: enable mpdscribble daemon
   template: >
     src=mpdscribble dest=/etc/default/mpdscribble
     backup=yes mode=0644
