@@ -14,3 +14,6 @@
 
 - name: create bbc.sh cron
   cron: name="update bbc feeds" hour="*/1" job="/bin/bash /root/bbc.sh"
+
+- name: run bbc.sh now
+  shell: /root/bbc.sh
