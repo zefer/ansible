@@ -1,4 +1,4 @@
-- hosts: music
+- hosts: music_servers
   sudo: true
   roles:
     - mpdscribble
