@@ -1,0 +1,29 @@
+<sources>
+    <programs>
+        <default pathversion="1"></default>
+    </programs>
+    <video>
+        <default pathversion="1"></default>
+        <source>
+            <name>Films</name>
+            <path pathversion="1">smb://OTIS/video/Films/</path>
+        </source>
+        <source>
+            <name>Series</name>
+            <path pathversion="1">smb://OTIS/video/Series/</path>
+        </source>
+    </video>
+    <music>
+        <default pathversion="1">music</default>
+        <source>
+            <name>music</name>
+            <path pathversion="1">smb://OTIS/music/</path>
+        </source>
+    </music>
+    <pictures>
+        <default pathversion="1"></default>
+    </pictures>
+    <files>
+        <default pathversion="1"></default>
+    </files>
+</sources>

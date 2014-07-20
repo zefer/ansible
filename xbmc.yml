@@ -1,0 +1,4 @@
+- hosts: xbmcs
+  sudo: true
+  roles:
+    - xbmc
