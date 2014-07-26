@@ -1,5 +1,8 @@
 [music_servers]
 music
 
+[music_clients]
+musicc1
+
 [xbmcs]
 video
