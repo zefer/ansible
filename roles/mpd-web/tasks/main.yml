@@ -1,0 +1,5 @@
+- name: create mpd-web init.d template
+  template: src=init.d-mpd-web dest=/etc/init.d/mpd-web mode=0755
+
+- name: start mpd-web daemon
+  action: service name=mpd-web state=started
