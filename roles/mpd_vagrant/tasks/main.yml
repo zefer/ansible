@@ -1,0 +1,17 @@
+- name: install mpd
+  apt: name=mpd update_cache=true
+
+- name: install mpc
+  apt: name=mpc
+
+- name: configure mpd
+  copy: src=mpd.conf dest=/etc/mpd.conf
+
+- name: link zefer music
+  command: ln -s /music /var/lib/mpd/music/zefer
+
+- name: create radio dir
+  file: path=/var/lib/mpd/music/radio/ state=directory owner=root group=root mode=0777
+
+- name: restart mpd
+  service: name=mpd state=restarted
