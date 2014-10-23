@@ -1,9 +1,9 @@
 #!/bin/sh
-#/etc/init.d/mpd-web
+#/etc/init.d/mothership
 
-NAME=mpd-web
+NAME=mothership
 DESC="Web UI for MPD"
-DAEMON=/root/mpd-web
+DAEMON=/root/mothership
 PIDFILE=/var/run/$NAME.pid
 
 OPTS="-logtostderr=false -mpdaddr=localhost:6600 -port :8081"

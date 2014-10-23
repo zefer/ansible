@@ -1,0 +1,5 @@
+- name: create mothership init.d template
+  template: src=init.d-mothership dest=/etc/init.d/mothership mode=0755
+
+- name: start mothership daemon
+  action: service name=mothership state=started

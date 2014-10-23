@@ -3,4 +3,4 @@
   roles:
     - mpdscribble
     - volumio
-    - mpd-web
+    - mothership
