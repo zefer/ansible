@@ -1,0 +1,33 @@
+# Important manual steps required:
+#
+# pacman -Syu
+# pacman -S python2
+
+- name: install sudo
+  pacman: name=sudo state=installed
+
+- name: configure sudo
+  lineinfile: >
+    dest=/etc/sudoers
+    regexp="joe ALL"
+    line="joe ALL=(ALL) ALL"
+    state=present
+    validate='visudo -cf %s'
+
+- name: Add joe user
+  user: name=joe groups=users shell=/bin/bash
+
+- name: Give joe his authorized keys file
+  authorized_key: >
+    user=joe
+    key="{{ lookup('file', '/Users/joe/.ssh/id_rsa.pub') }}"
+
+- name: Remove ability for root user to login over ssh
+  lineinfile: >
+    dest=/etc/ssh/sshd_config
+    regexp="^#PasswordAuthentication"
+    insertafter="^#PasswordAuthentication"
+    line="PasswordAuthentication no"
+
+- name: Install vim
+  pacman: name=vim state=installed update_cache=yes
