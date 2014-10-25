@@ -2,6 +2,8 @@
 #
 # pacman -Syu
 # pacman -S python2
+# run this playbook
+# passwd joe
 
 - name: install sudo
   pacman: name=sudo state=installed
