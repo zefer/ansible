@@ -1,5 +1,18 @@
 - name: install mpdscribble
   apt: name=mpdscribble update_cache=true
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: install binutils
+  pacman: name=binutils
+  # TODO: use more specific arch identifier when anible is updated with this
+  # patch https://github.com/mantiz/ansible/commit/5efc4efca7288f072028d1a13e5d0d731f0b7a8f
+  when: ansible_distribution == 'NA'
+
+- name: install mpdscribble
+  command: packer -S --noconfirm mpdscribble
+  # TODO: use more specific arch identifier when anible is updated with this
+  # patch https://github.com/mantiz/ansible/commit/5efc4efca7288f072028d1a13e5d0d731f0b7a8f
+  when: ansible_distribution == 'NA'
 
 - name: configure mpdscribble with last.fm credentials
   template: >
@@ -10,6 +23,19 @@
   template: >
     src=mpdscribble dest=/etc/default/mpdscribble
     backup=yes mode=0644
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: enable mpdscribble daemon
+  template: >
+    src=mpdscribble.service dest=/usr/lib/systemd/system/mpdscribble.service
+    mode=0644
+  # TODO: use more specific arch identifier when ansible is updated
+  when: ansible_distribution == 'NA'
+
+- name: enable mpdscribble daemon
+  command: systemctl enable mpdscribble
+  # TODO: use more specific arch identifier when anible is updated with this
+  when: ansible_distribution == 'NA'
 
 - name: restart mpdsribble
   service: name=mpdscribble state=restarted

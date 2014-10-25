@@ -31,5 +31,11 @@
     insertafter="^#PasswordAuthentication"
     line="PasswordAuthentication no"
 
+- name: Install dev tools
+  pacman: name=base-devel state=installed update_cache=yes
+
+- name: Install packer for easy AUR installs
+  pacman: name=packer state=installed
+
 - name: Install vim
-  pacman: name=vim state=installed update_cache=yes
+  pacman: name=vim state=installed

@@ -7,4 +7,5 @@
   tasks:
   roles:
     - music_server
+    - mpdscribble
     - mothership
