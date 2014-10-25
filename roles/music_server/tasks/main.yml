@@ -1,3 +1,5 @@
+- include: hifiberry.yml
+
 - include: mount_shares.yml
 
 - name: set server/hostname
