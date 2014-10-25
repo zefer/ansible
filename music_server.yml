@@ -1,0 +1,9 @@
+# usage: ansible-playbook -i inventory -K music_server.yml --ask-vault-pass
+
+- hosts: music_servers
+  sudo: true
+  vars:
+    ansible_python_interpreter: "/usr/bin/env python2"
+  tasks:
+  roles:
+    - music_server

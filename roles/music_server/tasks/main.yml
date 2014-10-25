@@ -1,0 +1,26 @@
+- include: mount_shares.yml
+
+- name: install mpd & mpc
+  pacman: name={{ item }} update_cache=true
+  with_items:
+    - mpd
+    - mpc
+
+- name: give mpd dir permissions
+  file: path=/var/lib/mpd owner=mpd
+
+- name: create the music dir
+  file: path=/var/lib/mpd/music state=directory
+
+- name: link the shares into the music dir
+  file: src=/mnt/{{ item }} dest=/var/lib/mpd/music/{{ item }} owner=mpd group=mpd state=link
+  with_items:
+    - music
+    - podcasts
+    - records
+
+- name: configure mpd
+  copy: src=mpd.conf dest=/etc/mpd.conf mode=0644 backup=true
+
+- name: start mpd
+  service: name=mpd state=started

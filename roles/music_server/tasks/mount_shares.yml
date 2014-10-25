@@ -1,0 +1,31 @@
+- name: install samba client
+  pacman: name=cifs-utils
+
+- name: create the mount dirs
+  file: path=/mnt/{{ item }} state=directory owner=mpd
+  # errors occcur if the share is already mounted
+  ignore_errors: true
+  with_items:
+    - music
+    - podcasts
+    - records
+
+- name: create fstab mount entry for nas music
+  # command: mount -t cifs //otis/music /mnt/music -o user={{ nas.username }},password={{ nas.password }}
+  lineinfile: >
+    backup=true
+    dest=/etc/fstab
+    line="//otis/{{ item }} /mnt/{{ item }} cifs username={{ nas.username }},password={{ nas.password }},comment=systemd.automount 0 0"
+  with_items:
+    - music
+    - podcasts
+    - records
+
+- name: mount the shares
+  # errors occcur if the share is already mounted
+  ignore_errors: true
+  command: mount /mnt/{{ item }}
+  with_items:
+    - music
+    - podcasts
+    - records
