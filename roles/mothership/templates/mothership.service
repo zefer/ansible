@@ -1,0 +1,10 @@
+[Unit]
+Description=Mothership
+After=network.target
+
+[Service]
+User=mpd
+ExecStart=/usr/bin/mothership -logtostderr=false -mpdaddr=localhost:6600 -port :8081
+
+[Install]
+WantedBy=default.target

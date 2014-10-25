@@ -22,5 +22,10 @@
 - name: configure mpd
   copy: src=mpd.conf dest=/etc/mpd.conf mode=0644 backup=true
 
+- name: enable mpd daemon
+  command: systemctl enable mpd
+  # TODO: use more specific arch identifier when anible is updated with this
+  when: ansible_distribution == 'NA'
+
 - name: start mpd
   service: name=mpd state=started

@@ -7,3 +7,4 @@
   tasks:
   roles:
     - music_server
+    - mothership
