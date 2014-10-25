@@ -2,6 +2,8 @@
 
 - include: mount_shares.yml
 
+- include: radio.yml
+
 - name: set server/hostname
   command: hostnamectl set-hostname music
 

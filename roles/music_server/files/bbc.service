@@ -1,0 +1,6 @@
+[Unit]
+Description=Created BBC Radio Playlists
+
+[Service]
+Type=simple
+ExecStart=/opt/bbc.sh
