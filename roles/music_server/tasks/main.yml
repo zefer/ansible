@@ -1,5 +1,8 @@
 - include: mount_shares.yml
 
+- name: set server/hostname
+  command: hostnamectl set-hostname music
+
 - name: install mpd & mpc
   pacman: name={{ item }} update_cache=true
   with_items:
