@@ -13,6 +13,8 @@
   # TODO: use more specific arch identifier when anible is updated with this
   # patch https://github.com/mantiz/ansible/commit/5efc4efca7288f072028d1a13e5d0d731f0b7a8f
   when: ansible_distribution == 'NA'
+  # FIXME arch=('armv6h') is missing in the default PKGBUILD so I ran this manually
+  ignore_errors: true
 
 - name: configure mpdscribble with last.fm credentials
   template: >
