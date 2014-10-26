@@ -8,6 +8,9 @@
   # patch https://github.com/mantiz/ansible/commit/5efc4efca7288f072028d1a13e5d0d731f0b7a8f
   when: ansible_distribution == 'NA'
 
+- name: allow mothership to listen in port 80
+  command: setcap cap_net_bind_service=ep /usr/bin/mothership
+
 - name: enable mothership daemon
   command: systemctl enable mothership
   # TODO: use more specific arch identifier when anible is updated with this

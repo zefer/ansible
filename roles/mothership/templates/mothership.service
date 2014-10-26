@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 User=mpd
-ExecStart=/usr/bin/mothership -logtostderr=false -mpdaddr=localhost:6600 -port :8081
+ExecStart=/usr/bin/mothership -logtostderr=false -mpdaddr=localhost:6600 -port :80
 
 [Install]
 WantedBy=default.target

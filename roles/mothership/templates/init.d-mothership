@@ -6,7 +6,7 @@ DESC="Web UI for MPD"
 DAEMON=/root/mothership
 PIDFILE=/var/run/$NAME.pid
 
-OPTS="-logtostderr=false -mpdaddr=localhost:6600 -port :8081"
+OPTS="-logtostderr=false -mpdaddr=localhost:6600 -port :80"
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
