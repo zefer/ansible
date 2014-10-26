@@ -5,6 +5,9 @@
 # run this playbook
 # passwd joe
 
+- name: set the timezone
+  command: timedatectl set-timezone Europe/London
+
 - name: install sudo
   pacman: name=sudo state=installed
 
