@@ -14,6 +14,9 @@
 - name: install sudo
   pacman: name=sudo state=installed
 
+- name: install wget
+  pacman: name=wget state=installed
+
 - name: configure sudo
   lineinfile: >
     dest=/etc/sudoers
