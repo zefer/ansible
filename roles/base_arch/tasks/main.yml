@@ -2,8 +2,11 @@
 #
 # pacman -Syu
 # pacman -S python2
-# run this playbook
+# DO NOT LOG OUT FROM root OR YOU WILL GET LOCKED OUT!
+# run this playbook `ansible-playbook -i inventory --ask-pass base_arch.yml`
 # passwd joe
+# if you logged out from root. Stick the sd card in anouther machine and edit
+# /etc/ssh/sshd_config to comment out `PasswordAuthentication no`
 
 - name: set the timezone
   command: timedatectl set-timezone Europe/London
