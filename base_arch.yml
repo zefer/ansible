@@ -1,4 +1,4 @@
-- hosts: music_servers
+- hosts: music_clients
   remote_user: root
   vars:
     ansible_python_interpreter: "/usr/bin/env python2"
