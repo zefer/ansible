@@ -11,11 +11,13 @@
 - name: set the timezone
   command: timedatectl set-timezone Europe/London
 
-- name: install sudo
-  pacman: name=sudo state=installed
-
-- name: install wget
-  pacman: name=wget state=installed
+- name: install necessary or useful packages
+  pacman: name={{ item }} state=installed
+  with_items:
+    - sudo
+    - vim
+    - wget
+    - tree
 
 - name: configure sudo
   lineinfile: >
