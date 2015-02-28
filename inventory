@@ -2,6 +2,8 @@
 music
 
 [music_clients]
+
+[new_arch_pis]
 alarmpi
 
 [xbmcs]
