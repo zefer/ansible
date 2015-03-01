@@ -26,6 +26,7 @@
   file: src=/mnt/{{ item }} dest=/var/lib/mpd/music/{{ item }} owner=mpd group=mpd state=link
   with_items:
     - music
+    - playlists
     - podcasts
     - records
 
