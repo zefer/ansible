@@ -1,3 +1,9 @@
+- name: install mpd & mpc
+  pacman: name={{ item }} update_cache=true
+  with_items:
+    - mpd
+    - mpc
+
 - include: hifiberry.yml
 
 - include: mount_shares.yml
@@ -6,12 +12,6 @@
 
 - name: set server/hostname
   command: hostnamectl set-hostname music
-
-- name: install mpd & mpc
-  pacman: name={{ item }} update_cache=true
-  with_items:
-    - mpd
-    - mpc
 
 - name: give mpd dir permissions
   file: path=/var/lib/mpd owner=mpd
