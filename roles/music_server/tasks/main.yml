@@ -4,7 +4,10 @@
     - mpd
     - mpc
 
-- include: hifiberry.yml
+# Opting for doing this manually from now on, as different versions of Pis,
+# DAC boards, and Linux versions mean it's quicker just to follow the relevant
+# guide. See https://www.hifiberry.com/guides/
+# - include: hifiberry.yml
 
 - include: mount_shares.yml
 
