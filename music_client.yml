@@ -1,4 +1,0 @@
-- hosts: music_clients
-  sudo: true
-  roles:
-    - music_client

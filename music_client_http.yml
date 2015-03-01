@@ -1,0 +1,4 @@
+- hosts: music_http_clients
+  sudo: true
+  roles:
+    - music_client_http

@@ -1,7 +1,7 @@
 [music_servers]
 music
 
-[music_clients]
+[music_http_clients]
 
 [new_arch_pis]
 alarmpi
