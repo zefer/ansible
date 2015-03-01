@@ -1,0 +1,54 @@
+# Some of the systemd/user setup details were extracted from the Arch AUR
+# package `pulseaudio-systemd`. It could be installed using
+# `packer -S pulseaudio-systemd` but I had more success doing these steps
+# manually.
+#
+# NB: You can manually run the start command from `pulseaudio.service` to test
+# your config.
+
+- name: install packages
+  pacman: name={{ item }} state=installed
+  with_items:
+    - pulseaudio
+    - alsa-utils
+    - alsa-firmware
+    - alsa-lib
+    - alsa-plugins
+
+- name: configure pulseaudio system-wide systemd permissions
+  copy: >
+    src=pulseaudio-system-wide.conf
+    dest=/etc/dbus-1/system.d/pulseaudio-system-wide.conf
+    owner=root
+    mode=0644
+
+- name: configure pulseaudio system-wide systemd unit
+  copy: >
+    src=pulseaudio.service
+    dest=/usr/lib/systemd/system/pulseaudio.service
+    owner=root
+    mode=0644
+
+- name: configure pulseaudio audio settings
+  copy: >
+    src=daemon.conf
+    dest=/etc/pulse/daemon.conf
+    owner=root
+    backup=true
+
+- name: configure pulseaudio system settings
+  copy: >
+    src=system.pa
+    dest=/etc/pulse/system.pa
+    owner=root
+    backup=true
+
+- name: set-up pulse user with audio access
+  command: useradd -r pulse -d /var/run/pulse -g pulse -G audio -c "PulseAudio" -s /bin/false
+  ignore_errors: true
+
+- name: enable system-wide pulseaudio
+  command: systemctl enable pulseaudio
+
+- name: start system-wide pulseaudio
+  action: service name=pulseaudio state=started

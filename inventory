@@ -1,6 +1,9 @@
 [music_servers]
 music
 
+[music_pulse_clients]
+upstairs
+
 [music_http_clients]
 
 [new_arch_pis]

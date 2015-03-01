@@ -1,0 +1,8 @@
+# usage: ansible-playbook -i inventory -K music_client_pulse.yml
+
+- hosts: music_pulse_clients
+  sudo: true
+  vars:
+    ansible_python_interpreter: "/usr/bin/env python2"
+  roles:
+    - music_client_pulse
