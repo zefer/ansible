@@ -19,9 +19,16 @@
     line="//otis/{{ item }} /mnt/{{ item }} cifs username={{ nas.username }},password={{ nas.password }},comment=systemd.automount 0 0"
   with_items:
     - music
-    - playlists
     - podcasts
     - records
+
+- name: create writeable fstab mount entry for nas playlists
+  lineinfile: >
+    backup=true
+    dest=/etc/fstab
+    line="//otis/{{ item }} /mnt/{{ item }} cifs username={{ nas.username }},password={{ nas.password }},rw,file_mode=0777,dir_mode=0777,comment=systemd.automount 0 0"
+  with_items:
+    - playlists
 
 - name: mount the shares
   # errors occcur if the share is already mounted
