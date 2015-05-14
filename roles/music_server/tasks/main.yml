@@ -35,8 +35,7 @@
 
 - name: enable mpd daemon
   command: systemctl enable mpd
-  # TODO: use more specific arch identifier when anible is updated with this
-  when: ansible_distribution == 'NA'
+  when: ansible_distribution == 'Archlinux'
 
 - name: start mpd
   service: name=mpd state=started

@@ -4,15 +4,11 @@
 
 - name: install binutils
   pacman: name=binutils
-  # TODO: use more specific arch identifier when anible is updated with this
-  # patch https://github.com/mantiz/ansible/commit/5efc4efca7288f072028d1a13e5d0d731f0b7a8f
-  when: ansible_distribution == 'NA'
+  when: ansible_distribution == 'Archlinux'
 
 - name: install mpdscribble
   command: packer -S --noconfirm mpdscribble
-  # TODO: use more specific arch identifier when anible is updated with this
-  # patch https://github.com/mantiz/ansible/commit/5efc4efca7288f072028d1a13e5d0d731f0b7a8f
-  when: ansible_distribution == 'NA'
+  when: ansible_distribution == 'Archlinux'
   # FIXME arch=('armv6h') is missing in the default PKGBUILD so I ran this manually
   ignore_errors: true
 
@@ -31,13 +27,11 @@
   template: >
     src=mpdscribble.service dest=/usr/lib/systemd/system/mpdscribble.service
     mode=0644
-  # TODO: use more specific arch identifier when ansible is updated
-  when: ansible_distribution == 'NA'
+  when: ansible_distribution == 'Archlinux'
 
 - name: enable mpdscribble daemon
   command: systemctl enable mpdscribble
-  # TODO: use more specific arch identifier when anible is updated with this
-  when: ansible_distribution == 'NA'
+  when: ansible_distribution == 'Archlinux'
 
 - name: restart mpdsribble
   service: name=mpdscribble state=restarted
