@@ -3,7 +3,6 @@
 - hosts: music_servers
   sudo: true
   vars:
-    ansible_python_interpreter: "/usr/bin/env python2"
   tasks:
   roles:
     - music_server

@@ -1,5 +1,5 @@
 [music_servers]
-music
+music ansible_python_interpreter="/usr/bin/env python2"
 
 [music_pulse_clients]
 upstairs
