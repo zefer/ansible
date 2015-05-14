@@ -4,7 +4,13 @@ After=network.target
 
 [Service]
 User=mpd
-ExecStart=/usr/bin/mothership -logtostderr=false -mpdaddr=localhost:6600 -port :80
+ExecStart=/usr/bin/mothership \
+  -gobrake.logtostderr=false \
+  -mpdaddr=localhost:6600 \
+  -port :80 \
+  {% if airbrake.env %}-abenv={{ airbrake.env }}{% endif %} \
+  {% if airbrake.project_id %}-abprojectid={{ airbrake.project_id }}{% endif %} \
+  {% if airbrake.api_key %}-abapikey={{ airbrake.api_key }}{% endif %}
 
 [Install]
 WantedBy=default.target
