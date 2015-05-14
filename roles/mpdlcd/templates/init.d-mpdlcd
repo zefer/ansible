@@ -1,0 +1,45 @@
+#!/bin/sh
+#/etc/init.d/mpdlcd
+
+NAME=mpdlcd
+DESC="Web UI for MPD"
+DAEMON=/root/mpdlcd
+PIDFILE=/var/run/$NAME.pid
+
+OPTS="-gobrake.logtostderr=false \
+  -mpdaddr=localhost:6600
+
+# Exit if the package is not installed
+[ -x "$DAEMON" ] || exit 0
+
+do_start () {
+  echo "Starting $NAME"
+  start-stop-daemon --start --quiet --background --oknodo --pidfile "$PIDFILE" \
+    --make-pidfile --exec "$DAEMON" -- $OPTS
+}
+
+do_stop () {
+  echo "Stopping $NAME"
+  start-stop-daemon --stop --quiet --oknodo --pidfile "$PIDFILE" \
+    --exec "$DAEMON" --retry 5
+}
+
+# The following part carries out specific functions depending on arguments.
+case "$1" in
+  start)
+    do_start
+    ;;
+  stop)
+    do_stop
+    ;;
+  restart)
+    do_stop
+    do_start
+    ;;
+  *)
+    echo "Usage: /etc/init.d/$NAME {start|stop|restart}"
+    exit 1
+    ;;
+esac
+
+exit 0

@@ -1,0 +1,12 @@
+[Unit]
+Description=Mpdlcd
+After=network.target
+
+[Service]
+User=root
+ExecStart=/usr/bin/mpdlcd \
+  -gobrake.logtostderr=false \
+  -mpdaddr=localhost:6600
+
+[Install]
+WantedBy=default.target
