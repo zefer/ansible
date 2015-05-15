@@ -4,8 +4,6 @@
 
 - name: create mothership systemd unit
   template: src=mothership.service dest=/usr/lib/systemd/system/mothership.service mode=0644
-  # TODO: use more specific arch identifier when anible is updated with this
-  # patch https://github.com/mantiz/ansible/commit/5efc4efca7288f072028d1a13e5d0d731f0b7a8f
   when: ansible_distribution == 'Archlinux'
 
 - name: allow mothership to listen in port 80
