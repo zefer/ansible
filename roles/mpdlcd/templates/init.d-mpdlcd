@@ -2,7 +2,7 @@
 #/etc/init.d/mpdlcd
 
 NAME=mpdlcd
-DESC="Web UI for MPD"
+DESC="Now playing LCD for MPD"
 DAEMON=/root/mpdlcd
 PIDFILE=/var/run/$NAME.pid
 
