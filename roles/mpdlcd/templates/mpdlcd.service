@@ -6,7 +6,10 @@ After=network.target
 User=root
 ExecStart=/usr/bin/mpdlcd \
   -gobrake.logtostderr=false \
-  -mpdaddr=localhost:6600
+  -mpdaddr=localhost:6600 \
+  {% if airbrake.env %}-abenv={{ airbrake.env }}{% endif %} \
+  {% if airbrake.project_id %}-abprojectid={{ airbrake.project_id }}{% endif %} \
+  {% if airbrake.api_key %}-abapikey={{ airbrake.api_key }}{% endif %}
 
 [Install]
 WantedBy=default.target
