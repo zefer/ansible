@@ -1,10 +1,10 @@
 [Unit]
-Description=Mpdlcd
+Description=flashlight
 After=network.target
 
 [Service]
 User=root
-ExecStart=/usr/bin/mpdlcd \
+ExecStart=/usr/bin/flashlight \
   -gobrake.logtostderr=false \
   -mpdaddr=localhost:6600 \
   {% if airbrake.env %}-abenv={{ airbrake.env }}{% endif %} \

@@ -1,0 +1,14 @@
+- name: create flashlight init.d template
+  template: src=init.d-flashlight dest=/etc/init.d/flashlight mode=0755
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: create flashlight systemd unit
+  template: src=flashlight.service dest=/usr/lib/systemd/system/flashlight.service mode=0644
+  when: ansible_distribution == 'Archlinux'
+
+- name: enable flashlight daemon
+  command: systemctl enable flashlight
+  when: ansible_distribution == 'Archlinux'
+
+- name: start flashlight daemon
+  action: service name=flashlight state=started

@@ -9,7 +9,7 @@ Ansible scripts to configure personal & home servers.
 Configures my home music server:
 
 * Web UI: [mothership](https://github.com/zefer/mothership)
-* LCD: [mpdlcd](https://github.com/zefer/mpdlcd)
+* LCD: [flashlight](https://github.com/zefer/flashlight)
 * Music player: [MPD](http://www.musicpd.org/)
 * Multi-room audio: [PulseAudio](http://www.freedesktop.org/wiki/Software/PulseAudio/)
 

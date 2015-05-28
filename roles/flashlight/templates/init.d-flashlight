@@ -1,9 +1,9 @@
 #!/bin/sh
-#/etc/init.d/mpdlcd
+#/etc/init.d/flashlight
 
-NAME=mpdlcd
+NAME=flashlight
 DESC="Now playing LCD for MPD"
-DAEMON=/root/mpdlcd
+DAEMON=/root/flashlight
 PIDFILE=/var/run/$NAME.pid
 
 OPTS="-gobrake.logtostderr=false \
