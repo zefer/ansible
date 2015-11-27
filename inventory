@@ -3,6 +3,7 @@ music ansible_python_interpreter="/usr/bin/env python2"
 
 [music_pulse_clients]
 upstairs
+kitchen
 
 [music_http_clients]
 
