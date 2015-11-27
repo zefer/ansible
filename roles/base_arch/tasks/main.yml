@@ -8,6 +8,13 @@
 # reboot
 # if you logged out from root. Stick the sd card in anouther machine and edit
 # /etc/ssh/sshd_config to comment out `PasswordAuthentication no`
+#
+# If root login is already disabled in the base image, you can temporarily
+# enable it with:
+# vi /etc/ssh/sshd_config
+# PermitRootLogin yes
+# PasswordAuthentication yes
+# systemctl restart sshd
 
 - name: set the timezone
   command: timedatectl set-timezone Europe/London
