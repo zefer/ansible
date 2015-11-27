@@ -48,6 +48,3 @@
 
 - name: Install packer for easy AUR installs
   pacman: name=packer state=installed
-
-- name: Install vim
-  pacman: name=vim state=installed
