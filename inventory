@@ -5,6 +5,9 @@ music ansible_python_interpreter="/usr/bin/env python2"
 upstairs
 kitchen
 
+[music_remote_controls]
+mogwai ansible_python_interpreter="/usr/bin/env python2"
+
 [music_http_clients]
 
 [new_arch_pis]
