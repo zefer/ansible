@@ -3,6 +3,7 @@
 - hosts: music_servers
   sudo: true
   vars:
+  vars_files: ["group_vars/airbrake"]
   tasks:
   roles:
     - music_server
