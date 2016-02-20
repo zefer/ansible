@@ -26,32 +26,28 @@
     - vim
     - wget
     - tree
+    - base-devel
+    - packer
 
 - name: configure sudo
-  lineinfile: >
-    dest=/etc/sudoers
-    regexp="joe ALL"
-    line="joe ALL=(ALL) ALL"
-    state=present
-    validate='visudo -cf %s'
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: "joe ALL"
+    line: "joe ALL=(ALL) ALL"
+    state: present
+    validate: 'visudo -cf %s'
 
 - name: Add joe user
   user: name=joe groups=users shell=/bin/bash
 
 - name: Give joe his authorized keys file
-  authorized_key: >
-    user=joe
-    key="{{ lookup('file', '/Users/joe/.ssh/id_rsa.pub') }}"
+  authorized_key:
+    user: joe
+    key: "{{ lookup('file', '/Users/joe/.ssh/id_rsa.pub') }}"
 
 - name: Remove ability for root user to login over ssh
-  lineinfile: >
-    dest=/etc/ssh/sshd_config
-    regexp="^#PasswordAuthentication"
-    insertafter="^#PasswordAuthentication"
-    line="PasswordAuthentication no"
-
-- name: Install dev tools
-  pacman: name=base-devel state=installed update_cache=yes
-
-- name: Install packer for easy AUR installs
-  pacman: name=packer state=installed
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^#PasswordAuthentication"
+    insertafter: "^#PasswordAuthentication"
+    line: "PasswordAuthentication no"
