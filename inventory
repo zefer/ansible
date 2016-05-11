@@ -4,6 +4,7 @@ music ansible_python_interpreter="/usr/bin/env python2"
 [music_pulse_clients]
 upstairs
 kitchen
+garage
 
 [music_remote_controls]
 mogwai ansible_python_interpreter="/usr/bin/env python2"
@@ -11,7 +12,7 @@ mogwai ansible_python_interpreter="/usr/bin/env python2"
 [music_http_clients]
 
 [new_arch_pis]
-alarmpi
+alarm
 
 [xbmcs]
 video
