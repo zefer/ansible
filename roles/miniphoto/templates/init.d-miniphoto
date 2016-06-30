@@ -1,0 +1,49 @@
+#!/bin/sh
+#/etc/init.d/miniphoto
+
+NAME=miniphoto
+DESC="a web photo browser"
+DAEMON=/usr/bin/miniphoto
+PIDFILE=/var/run/$NAME.pid
+
+OPTS="\
+  -port :80 \
+  -root /home/photographer/public \
+  {% if airbrake.env %}-abenv={{ airbrake.env }}{% endif %} \
+  {% if airbrake.project_id %}-abprojectid={{ airbrake.project_id }}{% endif %} \
+  {% if airbrake.api_key %}-abapikey={{ airbrake.api_key }}{% endif %}"
+
+# Exit if the package is not installed
+[ -x "$DAEMON" ] || exit 0
+
+do_start () {
+  echo "Starting $NAME"
+  start-stop-daemon --start --quiet --background --oknodo --pidfile "$PIDFILE" \
+    --make-pidfile --exec "$DAEMON" -- $OPTS -title "Bass Week Photos"
+}
+
+do_stop () {
+  echo "Stopping $NAME"
+  start-stop-daemon --stop --quiet --oknodo --pidfile "$PIDFILE" \
+    --exec "$DAEMON" --retry 5
+}
+
+# The following part carries out specific functions depending on arguments.
+case "$1" in
+  start)
+    do_start
+    ;;
+  stop)
+    do_stop
+    ;;
+  restart)
+    do_stop
+    do_start
+    ;;
+  *)
+    echo "Usage: /etc/init.d/$NAME {start|stop|restart}"
+    exit 1
+    ;;
+esac
+
+exit 0

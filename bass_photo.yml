@@ -1,0 +1,9 @@
+# usage: ansible-playbook -i inventory -K bass_photo.yml --ask-vault-pass
+
+- hosts: bass
+  sudo: true
+  vars:
+  vars_files: ["group_vars/bass"]
+  tasks:
+  roles:
+    - miniphoto
