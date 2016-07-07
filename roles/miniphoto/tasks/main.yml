@@ -2,6 +2,10 @@
   template: src=init.d-miniphoto dest=/etc/init.d/miniphoto mode=0755
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
+# sudo update-rc.d minidlna defaults
+- service: name=miniphoto enabled=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
 - name: allow to listen in port 80
   command: setcap cap_net_bind_service=ep /usr/bin/miniphoto
 
