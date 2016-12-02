@@ -5,7 +5,6 @@ After=network.target
 [Service]
 User=mpd
 ExecStart=/usr/bin/mothership \
-  -gobrake.logtostderr=false \
   -mpdaddr=localhost:6600 \
   -port :80 \
   {% if airbrake.env %}-abenv={{ airbrake.env }}{% endif %} \
