@@ -1,7 +1,7 @@
 # usage: ansible-playbook -i inventory -K music_remote_control.yml --ask-vault-pass
 
 - hosts: music_remote_controls
-  sudo: true
+  become: true
   vars:
   vars_files: ["group_vars/airbrake"]
   tasks:

@@ -1,5 +1,5 @@
 - hosts: music_servers
-  sudo: true
+  become: true
   roles:
     - mpdscribble
     - volumio
