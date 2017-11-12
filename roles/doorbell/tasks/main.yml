@@ -1,0 +1,25 @@
+- name: install necessary packages
+  pacman: name={{ item }} state=installed
+  with_items:
+    - git
+
+- name: checkout the doorbell code
+  git:
+    repo: https://github.com/zefer/doorbell.git
+    dest: /opt/doorbell
+    version: master
+    accept_hostkey: yes
+    update: yes
+    force: yes
+
+- name: create doorbell systemd unit
+  template:
+    src: doorbell.service
+    dest: /usr/lib/systemd/system/doorbell.service
+    mode: 0644
+
+- name: enable doorbell daemon
+  command: systemctl enable doorbell
+
+- name: start doorbell daemon
+  action: service name=doorbell state=started

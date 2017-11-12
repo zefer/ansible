@@ -1,0 +1,9 @@
+# usage: ansible-playbook -i inventory -K doorbell.yml --ask-vault-pass
+
+- hosts: doorbell
+  become: true
+  vars:
+  vars_files: ["group_vars/firebase"]
+  tasks:
+  roles:
+    - doorbell

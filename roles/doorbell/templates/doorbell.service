@@ -1,0 +1,11 @@
+[Unit]
+Description=doorbell
+After=network.target
+
+[Service]
+User=root
+Environment="DOORBELL_FIREBASE_SERVER_KEY={{ firebase.doorbell.server_key }}"
+ExecStart=/usr/bin/python /opt/doorbell/pi/doorbell.py
+
+[Install]
+WantedBy=default.target
