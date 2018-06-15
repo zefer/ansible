@@ -12,13 +12,8 @@ hendrix
 [music_remote_controls]
 mogwai ansible_python_interpreter="/usr/bin/env python2"
 
-[music_http_clients]
-
 [new_arch_pis]
 alarm
-
-[xbmcs]
-video
 
 [bass]
 bass
