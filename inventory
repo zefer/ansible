@@ -1,3 +1,8 @@
+[home:children]
+music_servers
+music_clients
+doorbell
+
 [music_servers]
 music ansible_python_interpreter="/usr/bin/env python2"
 
