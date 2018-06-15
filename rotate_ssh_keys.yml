@@ -1,0 +1,9 @@
+# usage: ansible-playbook -i inventory -K rotate_ssh_keys.yml --ask-vault-pass
+
+- hosts: home
+  become: true
+  vars:
+  vars_files: []
+  tasks:
+  roles:
+    - ssh_keys
