@@ -5,7 +5,6 @@ After=network.target
 [Service]
 User=root
 ExecStart=/usr/bin/flashlight \
-  -gobrake.logtostderr=false \
   -mpdaddr={{ groups.music_servers[0] }}:6600 \
   {% if airbrake.env %}-abenv={{ airbrake.env }}{% endif %} \
   {% if airbrake.project_id %}-abprojectid={{ airbrake.project_id }}{% endif %} \

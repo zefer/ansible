@@ -6,8 +6,7 @@ DESC="Now playing LCD for MPD"
 DAEMON=/root/flashlight
 PIDFILE=/var/run/$NAME.pid
 
-OPTS="-gobrake.logtostderr=false \
-  -mpdaddr={{ groups.music_servers[0] }}:6600 \
+OPTS="-mpdaddr={{ groups.music_servers[0] }}:6600 \
   {% if airbrake.env %}-abenv={{ airbrake.env }}{% endif %} \
   {% if airbrake.project_id %}-abprojectid={{ airbrake.project_id }}{% endif %} \
   {% if airbrake.api_key %}-abapikey={{ airbrake.api_key }}{% endif %}"
