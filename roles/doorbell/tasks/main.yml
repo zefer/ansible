@@ -2,6 +2,12 @@
   pacman: name={{ item }} state=installed
   with_items:
     - git
+    - mpc
+
+- name: install RPi.GPIO
+  pip:
+    name: RPi.GPIO
+    state: latest
 
 - name: checkout the doorbell code
   git:
