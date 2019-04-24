@@ -3,7 +3,7 @@
 - hosts: doorbell
   become: true
   vars:
-  vars_files: ["group_vars/firebase"]
+  vars_files: []
   tasks:
   roles:
     - doorbell
