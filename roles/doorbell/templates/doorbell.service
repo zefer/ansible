@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 User=root
+Environment="MPD_HOST={{ groups.music_servers[0] }}"
 ExecStart=/usr/bin/python /opt/doorbell/pi/doorbell.py
 
 [Install]
