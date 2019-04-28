@@ -4,11 +4,6 @@
     - git
     - mpc
 
-- name: install RPi.GPIO
-  pip:
-    name: RPi.GPIO
-    state: latest
-
 - name: checkout the doorbell code
   git:
     repo: https://github.com/zefer/doorbell.git
