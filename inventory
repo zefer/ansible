@@ -2,6 +2,7 @@
 music_servers
 music_clients
 doorbell
+tools
 
 [music_servers]
 music ansible_python_interpreter="/usr/bin/env python2"
@@ -22,3 +23,7 @@ alarm
 
 [bass]
 bass
+
+[tools]
+curtis user=admin
+otis user=admin ansible_become=false ansible_python_interpreter=/opt/bin/python3

@@ -1,5 +1,7 @@
-- name: Replace authorized keys with this key
+- name: Add these authorized keys
   authorized_key:
-    user: joe
-    key: "{{ lookup('file', '/Users/joe/.ssh/id_ed25519.pub') }}"
-    exclusive: true
+    user: "{{ user | default('joe') }}"
+    state: present
+    key: "{{ item }}"
+    exclusive: false
+  with_items: "{{ public_keys }}"
