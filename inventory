@@ -7,6 +7,9 @@ tools
 [music_servers]
 music ansible_python_interpreter="/usr/bin/env python2"
 
+[music_servers_nina]
+nina
+
 [music_clients]
 upstairs
 kitchen
@@ -19,7 +22,7 @@ hendrix
 mogwai ansible_python_interpreter="/usr/bin/env python2"
 
 [new_arch_pis]
-alarm
+alarmpi
 
 [bass]
 bass
