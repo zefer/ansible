@@ -1,0 +1,6 @@
+# usage: ansible-playbook -i inventory -K music_client_snapcast.yml
+
+- hosts: music_clients
+  become: true
+  roles:
+    - music_client_snapcast

@@ -1,0 +1,28 @@
+- name: install packages
+  pacman:
+    state: present
+    name:
+      - alsa-utils
+      - alsa-firmware
+      - alsa-lib
+      - alsa-plugins
+
+# TODO: make this skip if snapcast is already present, otherwise it seems to
+# resinstall which takes aaaaages. In the meantime, it probably makes sense to
+# run `yay -S snapcast` manually on each server.
+# - name: install aur packages
+#   aur:
+#     name: snapcast
+#     state: present
+#   become: yes
+#   become_user: aur_builder
+
+- name: enable snapclient daemon
+  service:
+    name: snapclient
+    enabled: yes
+
+- name: start snapclient daemon
+  service:
+    name: snapclient
+    state: started
