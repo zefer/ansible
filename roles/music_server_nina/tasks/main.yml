@@ -1,19 +1,3 @@
-# Manual steps required!
-# - Install the aur ansible module:
-#   `git clone https://github.com/kewlfft/ansible-aur.git ~/.ansible/plugins/modules/aur`
-# - Consider installing an aur helper such as yay:
-#   https://wiki.archlinux.org/index.php/AUR_helpers
-#   https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_and_upgrading_packages
-
-- user:
-    name: aur_builder
-    group: wheel
-- lineinfile:
-    path: /etc/sudoers.d/11-install-aur_builder
-    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
-    create: yes
-    validate: 'visudo -cf %s'
-
 - aur:
     name: snapcast
     # use: yay
@@ -23,7 +7,6 @@
 
 - name: install mpd & mpc
   pacman:
-    update_cache: true
     name:
       - mpd
         mpc

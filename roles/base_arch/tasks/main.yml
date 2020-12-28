@@ -16,18 +16,29 @@
 # PasswordAuthentication yes
 # systemctl restart sshd
 
+# Other manual steps required!
+# - Install the aur ansible module:
+#   `git clone https://github.com/kewlfft/ansible-aur.git ~/.ansible/plugins/modules/aur`
+# - Consider installing an aur helper such as yay, but not necessary:
+#   https://wiki.archlinux.org/index.php/AUR_helpers
+#   https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_and_upgrading_packages
+
 - name: set the timezone
   command: timedatectl set-timezone Europe/London
 
 - name: install necessary or useful packages
-  pacman: name={{ item }} state=installed
-  with_items:
-    - sudo
-    - vim
-    - wget
-    - tree
-    - base-devel
-    - packer
+  pacman:
+    # update_cache: true
+    state: present
+    name:
+      - sudo
+      - vim
+      - wget
+      - tree
+      - base-devel
+      - packer
+      - git
+      - python
 
 - name: configure sudo
   lineinfile:
@@ -51,3 +62,15 @@
     regexp: "^#PasswordAuthentication"
     insertafter: "^#PasswordAuthentication"
     line: "PasswordAuthentication no"
+
+- name: Add a user for running aur installs
+  user:
+    name: aur_builder
+    group: wheel
+
+- name: configure the aur installing user to not require a password for pacman
+  lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    create: yes
+    validate: 'visudo -cf %s'
