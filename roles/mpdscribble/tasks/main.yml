@@ -7,10 +7,11 @@
   when: ansible_distribution == 'Archlinux'
 
 - name: install mpdscribble
-  command: packer -S --noconfirm mpdscribble
-  when: ansible_distribution == 'Archlinux'
-  # FIXME arch=('armv6h') is missing in the default PKGBUILD so I ran this manually
-  ignore_errors: true
+  aur:
+    name: mpdscribble
+    state: present
+  become: yes
+  become_user: aur_builder
 
 - name: configure mpdscribble with last.fm credentials
   template: >
@@ -19,19 +20,15 @@
 
 - name: enable mpdscribble daemon
   template: >
-    src=mpdscribble dest=/etc/default/mpdscribble
-    backup=yes mode=0644
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-- name: enable mpdscribble daemon
-  template: >
     src=mpdscribble.service dest=/usr/lib/systemd/system/mpdscribble.service
     mode=0644
-  when: ansible_distribution == 'Archlinux'
 
 - name: enable mpdscribble daemon
-  command: systemctl enable mpdscribble
-  when: ansible_distribution == 'Archlinux'
+  service:
+    name: mpdscribble
+    enabled: yes
 
-- name: restart mpdsribble
-  service: name=mpdscribble state=restarted
+- name: restart mpdscribble daemon
+  service:
+    name: mpdscribble
+    state: restarted
