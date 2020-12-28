@@ -1,60 +1,88 @@
-# Some of the systemd/user setup details were extracted from the Arch AUR
-# package `pulseaudio-systemd`. It could be installed using
-# `packer -S pulseaudio-systemd` but I had more success doing these steps
-# manually.
-#
-# NB: You can manually run the start command from `pulseaudio.service` to test
-# your config.
+# Manual steps required!
+# - Install the aur ansible module:
+#   `git clone https://github.com/kewlfft/ansible-aur.git ~/.ansible/plugins/modules/aur`
+# - Consider installing an aur helper such as yay:
+#   https://wiki.archlinux.org/index.php/AUR_helpers
+#   https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_and_upgrading_packages
 
-- name: install packages
+- user:
+    name: aur_builder
+    group: wheel
+- lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    create: yes
+    validate: 'visudo -cf %s'
+
+- aur:
+    name: snapcast
+    # use: yay
+    state: present
+  become: yes
+  become_user: aur_builder
+
+- name: install mpd & mpc
   pacman:
-    state: installed
+    update_cache: true
     name:
-      # - python
-      - pulseaudio
-      # - alsa-utils
-      # - alsa-firmware
-      # - alsa-lib
-      # - alsa-plugins
+      - mpd
+        mpc
 
-# - name: configure pulseaudio system-wide systemd permissions
-#   copy: >
-#     src=pulseaudio-system-wide.conf
-#     dest=/etc/dbus-1/system.d/pulseaudio-system-wide.conf
-#     owner=root
-#     mode=0644
+- include: mount_shares.yml
 
-- name: configure pulseaudio system-wide systemd unit
-  copy: >
-    src=pulseaudio.service
-    dest=/usr/lib/systemd/system/pulseaudio.service
-    owner=root
-    mode=0644
+- include: radio.yml
 
-- name: configure pulseaudio audio settings
-  copy: >
-    src=daemon.conf
-    dest=/etc/pulse/daemon.conf
-    owner=root
-    backup=true
+# TODO: change this to music when/if this replaces the old server.
+- name: set server/hostname
+  command: hostnamectl set-hostname nina
 
-- name: configure pulseaudio system settings
-  copy: >
-    src=system.pa
-    dest=/etc/pulse/system.pa
-    owner=root
-    backup=true
+- name: give mpd dir permissions
+  file:
+    path: /var/lib/mpd
+    owner: mpd
 
-- name: create the pulse group
-  command: groupadd pulse
+- name: create the music dir
+  file:
+    path: /var/lib/mpd/music
+    state: directory
+
+- name: link the shares into the music dir
   ignore_errors: true
+  file:
+    src: /mnt/{{ item }}
+    dest: /var/lib/mpd/music/{{ item }}
+    owner: mpd
+    group: mpd
+    state: link
+  with_items:
+    - music
+    - playlists
+    - podcasts
+    - records
 
-- name: set-up pulse user with audio access
-  command: useradd -r pulse -d /var/run/pulse -g pulse -G audio -c "PulseAudio" -s /bin/false
-  ignore_errors: true
+- name: configure mpd
+  copy:
+    src: mpd.conf
+    dest: /etc/mpd.conf
+    mode: 0644
+    backup: true
 
-- name: enable system-wide pulseaudio
-  command: systemctl enable pulseaudio
+- name: enable mpd daemon
+  service:
+    name: mpd
+    enabled: yes
 
-- name: start system-wide pulseaudio
-  action: service name=pulseaudio state=started
+- name: start mpd daemon
+  service:
+    name: mpd
+    state: started
+
+- name: enable snapserver daemon
+  service:
+    name: snapserver
+    enabled: yes
+
+- name: start snapserver daemon
+  service:
+    name: snapserver
+    state: started

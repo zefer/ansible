@@ -29,12 +29,14 @@ load-module module-default-device-restore
 
 ### Automatically move streams to the default sink if the sink they are
 ### connected to dies, similar for sources
-load-module module-rescue-streams
+# load-module module-rescue-streams
 
 
 
 ### Accept connections from LAN.
 load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1;192.168.0.0/16 auth-anonymous=1
+### Broadcast them to the whole LAN.
+load-module module-rtp-send
 
 
 
