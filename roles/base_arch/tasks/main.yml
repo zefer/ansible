@@ -19,9 +19,14 @@
 # Other manual steps required!
 # - Install the aur ansible module:
 #   `git clone https://github.com/kewlfft/ansible-aur.git ~/.ansible/plugins/modules/aur`
-# - Consider installing an aur helper such as yay, but not necessary:
-#   https://wiki.archlinux.org/index.php/AUR_helpers
-#   https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_and_upgrading_packages
+
+# Install this aur helper. Without this, the aur installation module can fail
+# if not all deps are met. This handles the deps silently, much easier.
+# https://wiki.archlinux.org/index.php/AUR_helpers
+# https://wiki.archlinux.org/index.php/Arch_User_Repository#Installing_and_upgrading_packages
+# git clone https://aur.archlinux.org/yay.git
+# cd yay
+# makepkg -si
 
 - name: set the timezone
   command: timedatectl set-timezone Europe/London
@@ -39,6 +44,7 @@
       - packer
       - git
       - python
+      - go
 
 - name: configure sudo
   lineinfile:
