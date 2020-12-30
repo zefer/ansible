@@ -1,0 +1,9 @@
+# Bootstrap a new arch node. See the role the details.
+
+- hosts: new_arch_pis
+  remote_user: root
+  # vars:
+  #   ansible_python_interpreter: "/usr/bin/env python2"
+  tasks:
+  roles:
+    - base_arch

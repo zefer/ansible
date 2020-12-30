@@ -1,0 +1,63 @@
+- name: install mpd & mpc
+  pacman:
+    name:
+      - mpd
+        mpc
+
+- include: mount_shares.yml
+
+- include: radio.yml
+
+- name: set server/hostname
+  command: hostnamectl set-hostname music
+
+- name: give mpd dir permissions
+  file:
+    path: /var/lib/mpd
+    owner: mpd
+
+- name: create the music dir
+  file:
+    path: /var/lib/mpd/music
+    state: directory
+
+- name: link the shares into the music dir
+  ignore_errors: true
+  file:
+    src: /mnt/{{ item }}
+    dest: /var/lib/mpd/music/{{ item }}
+    owner: mpd
+    group: mpd
+    state: link
+  with_items:
+    - music
+    - playlists
+    - podcasts
+    - records
+
+- name: configure mpd
+  copy:
+    src: mpd.conf
+    dest: /etc/mpd.conf
+    mode: 0644
+    backup: true
+
+- name: enable mpd daemon
+  service:
+    name: mpd
+    enabled: yes
+
+- name: start mpd daemon
+  service:
+    name: mpd
+    state: started
+
+- name: enable snapserver daemon
+  service:
+    name: snapserver
+    enabled: yes
+
+- name: start snapserver daemon
+  service:
+    name: snapserver
+    state: started

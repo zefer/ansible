@@ -1,0 +1,14 @@
+# usage: ansible-playbook -i inventory -K music_client_snapcast.yml
+
+- hosts: music_clients
+  become: true
+  roles:
+    - snapcast
+    - music_client_snapcast
+
+# Some clients have an LCD display.
+- hosts: livingroom
+  become: true
+  vars_files: ["group_vars/airbrake"]
+  roles:
+    - flashlight

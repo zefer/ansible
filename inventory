@@ -5,9 +5,10 @@ doorbell
 tools
 
 [music_servers]
-music ansible_python_interpreter="/usr/bin/env python2"
+music
 
 [music_clients]
+livingroom
 upstairs
 kitchen
 garage
@@ -19,7 +20,7 @@ hendrix
 mogwai ansible_python_interpreter="/usr/bin/env python2"
 
 [new_arch_pis]
-alarm
+alarmpi
 
 [bass]
 bass

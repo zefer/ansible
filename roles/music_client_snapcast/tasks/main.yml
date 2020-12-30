@@ -1,0 +1,18 @@
+- name: install packages
+  pacman:
+    state: present
+    name:
+      - alsa-utils
+      - alsa-firmware
+      - alsa-lib
+      - alsa-plugins
+
+- name: enable snapclient daemon
+  service:
+    name: snapclient
+    enabled: yes
+
+- name: start snapclient daemon
+  service:
+    name: snapclient
+    state: started
