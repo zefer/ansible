@@ -1,3 +1,6 @@
+# NOTE: superseded by music_client_snapcast (using snapcast instead of
+# pulseaudio).
+
 # usage: ansible-playbook -i inventory -K music_client_pulse.yml
 
 - hosts: music_clients

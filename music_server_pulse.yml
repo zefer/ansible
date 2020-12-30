@@ -1,3 +1,6 @@
+# NOTE: superseded by music_server_snapcast (using snapcast instead of
+# pulseaudio).
+
 # usage: ansible-playbook -i inventory -K music_server_pulse.yml --ask-vault-pass
 
 - hosts: music_servers
