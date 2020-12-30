@@ -8,7 +8,6 @@
 
 - include: radio.yml
 
-# TODO: change this to music when/if this replaces the old server.
 - name: set server/hostname
   command: hostnamectl set-hostname music
 
