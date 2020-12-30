@@ -7,23 +7,6 @@
       - alsa-lib
       - alsa-plugins
 
-# NOTE: I've found that compiling snapcast (via aur) fails on a Pi 1 with 512MB
-# RAM but succeeds on Pi 2 and above with 1GB or above of RAM. To fix this, I
-# added a 512MB swapfile to the Pi 1: https://wiki.archlinux.org/index.php/swap#Swap_file
-#
-# NOTE: This can take hours to run on older Pis, hence commented-out until
-# needed.
-#
-# TODO: make this skip if snapcast is already present, otherwise it seems to
-# resinstall which takes aaaaages. In the meantime, it probably makes sense to
-# run `yay -S snapcast` manually on each server.
-# - name: install aur packages
-#   aur:
-#     name: snapcast
-#     state: present
-#   become: yes
-#   become_user: aur_builder
-
 - name: enable snapclient daemon
   service:
     name: snapclient

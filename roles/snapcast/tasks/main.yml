@@ -1,0 +1,24 @@
+# Installs snapcast (from AUR) _only_ if it is not already installed. This is
+# because compilation can take a very long time, especially on old Pis.
+#
+# NOTE: I've found that compiling snapcast (via aur) fails on a Pi 1 with 512MB
+# RAM but succeeds on Pi 2 and above with 1GB or above of RAM. To fix this, I
+# added a 512MB swapfile to the Pi 1: https://wiki.archlinux.org/index.php/swap#Swap_file
+#
+# Could also be installed manually with `yay -S snapcast` or `makepkg -si`.
+
+- command: snapclient -v
+  register: snapclient
+  ignore_errors: true
+
+- debug:
+    msg: snapcast is already installed, skipping installation
+  when: snapclient is not failed
+
+- name: install aur packages
+  aur:
+    name: snapcast
+    state: present
+  become: yes
+  become_user: aur_builder
+  when: snapclient is failed

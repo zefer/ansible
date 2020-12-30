@@ -3,6 +3,7 @@
 - hosts: music_clients
   become: true
   roles:
+    - snapcast
     - music_client_snapcast
 
 # Some clients have an LCD display.

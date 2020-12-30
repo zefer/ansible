@@ -6,6 +6,7 @@
   vars_files: ["group_vars/airbrake"]
   tasks:
   roles:
+    - snapcast
     - music_server_snapcast
     - mpdscribble
     - mothership

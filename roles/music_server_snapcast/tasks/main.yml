@@ -1,10 +1,3 @@
-- aur:
-    name: snapcast
-    # use: yay
-    state: present
-  become: yes
-  become_user: aur_builder
-
 - name: install mpd & mpc
   pacman:
     name:
