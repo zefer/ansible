@@ -17,7 +17,7 @@
 
 # TODO: change this to music when/if this replaces the old server.
 - name: set server/hostname
-  command: hostnamectl set-hostname nina
+  command: hostnamectl set-hostname music
 
 - name: give mpd dir permissions
   file:

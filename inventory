@@ -5,12 +5,10 @@ doorbell
 tools
 
 [music_servers]
-music ansible_python_interpreter="/usr/bin/env python2"
-
-[music_servers_nina]
-nina
+music
 
 [music_clients]
+livingroom
 upstairs
 kitchen
 garage
