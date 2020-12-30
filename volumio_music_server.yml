@@ -1,6 +1,0 @@
-- hosts: music_servers
-  become: true
-  roles:
-    - mpdscribble
-    - volumio
-    - mothership
