@@ -1,6 +1,6 @@
 # usage: ansible-playbook -i inventory -K music_server_snapcast.yml --ask-vault-pass
 
-- hosts: music_servers_snapcast
+- hosts: music_servers
   become: true
   vars:
   vars_files: ["group_vars/airbrake"]
