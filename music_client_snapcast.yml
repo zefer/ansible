@@ -4,3 +4,10 @@
   become: true
   roles:
     - music_client_snapcast
+
+# Some clients have an LCD display.
+- hosts: livingroom
+  become: true
+  vars_files: ["group_vars/airbrake"]
+  roles:
+    - flashlight
