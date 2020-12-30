@@ -41,7 +41,6 @@
       - wget
       - tree
       - base-devel
-      - packer
       - git
       - python
       - go
