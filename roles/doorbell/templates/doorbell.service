@@ -5,7 +5,10 @@ After=network.target
 [Service]
 User=root
 Environment="MPD_HOST={{ groups.music_servers[0] }}"
-ExecStart=/opt/doorbell/doorbell
+ExecStart=/opt/doorbell/doorbell \
+  -influxdbaddr={{ influxdb.address }} \
+  -influxdbauth={{ influxdb.username }}:{{ influxdb.token }} \
+  -influxdbname={{ influxdb.dbname }}
 
 [Install]
 WantedBy=default.target

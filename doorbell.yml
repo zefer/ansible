@@ -3,7 +3,7 @@
 - hosts: doorbell
   become: true
   vars:
-  vars_files: []
+  vars_files: ["group_vars/influxdb"]
   tasks:
   roles:
     - doorbell

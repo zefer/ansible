@@ -4,15 +4,6 @@
     - git
     - mpc
 
-- name: checkout the doorbell code
-  git:
-    repo: https://github.com/zefer/doorbell.git
-    dest: /opt/doorbell
-    version: master
-    accept_hostkey: yes
-    update: yes
-    force: yes
-
 - name: create doorbell systemd unit
   template:
     src: doorbell.service
