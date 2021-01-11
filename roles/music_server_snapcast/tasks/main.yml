@@ -34,6 +34,7 @@
     - playlists
     - podcasts
     - records
+    - audiobooks
 
 - name: configure mpd
   copy:
