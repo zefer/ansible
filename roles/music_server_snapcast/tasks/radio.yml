@@ -1,14 +1,26 @@
 - name: create the radio playlist dir
-  file: path=/var/lib/mpd/music/radio state=directory owner=mpd
+  file:
+    path: /var/lib/mpd/music/radio
+    state: directory
+    owner: mpd
 
 - name: copy bbc radios script
-  copy: src=bbc.sh dest=/opt/bbc.sh mode=0755
+  copy:
+    src: bbc.sh
+    dest: /opt/bbc.sh
+    mode: 0755
 
 - name: create bbc radio systemd service
-  copy: src=bbc.service dest=/usr/lib/systemd/system/bbc.service mode=0644
+  copy:
+    src: bbc.service
+    dest: /usr/lib/systemd/system/bbc.service
+    mode: 0644
 
 - name: create bbc radio systemd timer
-  copy: src=bbc.timer dest=/usr/lib/systemd/system/bbc.timer mode=0744
+  copy:
+    src: bbc.timer
+    dest: /usr/lib/systemd/system/bbc.timer
+    mode: 0744
 
 - name: start the bbc radio playlist timer
   command: systemctl start bbc.timer
