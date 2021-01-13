@@ -4,6 +4,12 @@
     state: directory
     owner: mpd
 
+- name: copy the Worldwide FM radio file
+  copy:
+    src: Worldwide FM.m3u
+    dest: /var/lib/mpd/music/radio
+    mode: 0644
+
 - name: copy bbc radios script
   copy:
     src: bbc.sh
