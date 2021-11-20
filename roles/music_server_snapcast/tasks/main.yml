@@ -53,6 +53,13 @@
     name: mpd
     state: started
 
+- name: configure snapcast server
+  copy:
+    src: snapserver.conf
+    dest: /etc/snapserver.conf
+    mode: 0644
+    backup: true
+
 - name: enable snapserver daemon
   service:
     name: snapserver
