@@ -10,6 +10,17 @@
     dest: /var/lib/mpd/music/radio
     mode: 0644
 
+- name: copy the Radio Paradise files
+  copy:
+    src: "{{ item }}"
+    dest: /var/lib/mpd/music/radio
+    mode: 0644
+  with_items:
+    - "Radio Paradise (main).m3u"
+    - "Radio Paradise (mellow).m3u"
+    - "Radio Paradise (rock).m3u"
+    - "Radio Paradise (world).m3u"
+
 - name: copy bbc radios script
   copy:
     src: bbc.sh
