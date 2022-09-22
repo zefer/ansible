@@ -4,46 +4,22 @@
     state: directory
     owner: mpd
 
-- name: copy the Worldwide FM radio file
-  copy:
-    src: Worldwide FM.m3u
-    dest: /var/lib/mpd/music/radio
-    mode: 0644
-
-- name: copy the Radio Paradise files
+- name: copy the radio playlist files
   copy:
     src: "{{ item }}"
     dest: /var/lib/mpd/music/radio
     mode: 0644
   with_items:
+    - "Worldwide FM.m3u"
+    - "BBC 6 Music.m3u"
+    - "BBC Radio 1.m3u"
+    - "BBC Radio 2.m3u"
+    - "BBC Radio 3.m3u"
+    - "BBC Radio 4.m3u"
+    - "BBC Radio 4 Extra.m3u"
+    - "BBC Radio 5 Live.m3u"
+    - "BBC Radio Cumbria.m3u"
     - "Radio Paradise (main).m3u"
     - "Radio Paradise (mellow).m3u"
     - "Radio Paradise (rock).m3u"
     - "Radio Paradise (world).m3u"
-
-- name: copy bbc radios script
-  copy:
-    src: bbc.sh
-    dest: /opt/bbc.sh
-    mode: 0755
-
-- name: create bbc radio systemd service
-  copy:
-    src: bbc.service
-    dest: /usr/lib/systemd/system/bbc.service
-    mode: 0644
-
-- name: create bbc radio systemd timer
-  copy:
-    src: bbc.timer
-    dest: /usr/lib/systemd/system/bbc.timer
-    mode: 0744
-
-- name: start the bbc radio playlist timer
-  command: systemctl start bbc.timer
-
-- name: enable the bbc radio playlist timer
-  command: systemctl enable bbc.timer
-
-- name: run bbc.sh now
-  shell: /opt/bbc.sh
