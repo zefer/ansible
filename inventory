@@ -8,15 +8,14 @@ tools
 music
 
 [music_clients]
-livingroom
-kitchen
+music
+snug
 office
+conservatory
+garage
 
 [doorbell]
-hendrix
-
-[music_remote_controls]
-mogwai ansible_python_interpreter="/usr/bin/env python2"
+doorbell
 
 [new_arch_pis]
 alarmpi
