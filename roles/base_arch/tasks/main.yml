@@ -1,7 +1,7 @@
 # Important manual steps required:
 #
 # pacman -Syu
-# pacman -S python2
+# pacman -S python
 # DO NOT LOG OUT FROM root OR YOU WILL GET LOCKED OUT!
 # run this playbook `ansible-playbook -i inventory --ask-pass base_arch.yml`
 # passwd joe
