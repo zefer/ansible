@@ -7,7 +7,7 @@
     - music_client_snapcast
 
 # Some clients have an LCD display.
-- hosts: office
+- hosts: garage
   become: true
   vars_files: ["group_vars/airbrake"]
   roles:
