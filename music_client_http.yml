@@ -1,4 +1,0 @@
-- hosts: music_http_clients
-  become: true
-  roles:
-    - music_client_http
