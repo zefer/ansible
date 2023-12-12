@@ -68,6 +68,7 @@
     insertafter: "^#PasswordAuthentication"
     line: "PasswordAuthentication no"
 
+# TODO: replace this with the pacman module and/or Yay.
 - name: Add a user for running aur installs
   user:
     name: aur_builder
