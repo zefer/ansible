@@ -8,11 +8,12 @@ tools
 music
 
 [music_clients]
-music
+livingroom
 snug
 office
 conservatory
 garage
+bedroom
 
 [doorbell]
 doorbell
