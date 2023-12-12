@@ -18,7 +18,7 @@
     src=mpdscribble.conf dest=/etc/mpdscribble.conf
     backup=yes mode=0640
 
-- name: enable mpdscribble daemon
+- name: configure mpdscribble daemon
   template: >
     src=mpdscribble.service dest=/usr/lib/systemd/system/mpdscribble.service
     mode=0644
