@@ -13,6 +13,19 @@
   become: yes
   become_user: aur_builder
 
+- name: Ensure group "mpdscribble" exists
+  group:
+    name: mpdscribble
+    state: present
+
+- name: Ensure user "mpdscribble" exists
+  user:
+    name: mpdscribble
+    groups: mpdscribble
+    append: false
+    shell: /usr/bin/nologin
+    create_home: false
+
 - name: configure mpdscribble with last.fm credentials
   template: >
     src=mpdscribble.conf dest=/etc/mpdscribble.conf
