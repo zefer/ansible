@@ -1,0 +1,31 @@
+# Run an additional MPD instance to provide notifications only, e.g. doorbell
+# and other alerts.
+
+- name: create the notification sounds dir
+  file:
+    path: /var/lib/mpd/notifications
+    state: directory
+
+- name: configure mpd notifications
+  copy:
+    src: mpd-notifications.conf
+    dest: /etc/mpd-notifications.conf
+    mode: 0644
+    backup: true
+
+- name: create mpd notifications systemd unit
+  copy:
+    src: mpd-notifications.service
+    dest: /usr/lib/systemd/system/mpd-notifications.service
+    mode: 0644
+    backup: true
+
+- name: enable mpd notifications daemon
+  service:
+    name: mpd-notifications
+    enabled: yes
+
+- name: start mpd notifications daemon
+  service:
+    name: mpd-notifications
+    state: started

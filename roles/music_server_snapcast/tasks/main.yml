@@ -53,6 +53,8 @@
     name: mpd
     state: started
 
+- include: mpd_notifications.yml
+
 - name: configure snapcast server
   copy:
     src: snapserver.conf
