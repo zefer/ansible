@@ -1,7 +1,6 @@
 [home:children]
 music_servers
 music_clients
-doorbell
 tools
 
 [music_servers]
@@ -14,9 +13,6 @@ office
 conservatory
 garage
 bedroom
-
-[doorbell]
-doorbell
 
 [new_arch_pis]
 alarmpi
