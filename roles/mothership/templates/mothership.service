@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=mpd
 ExecStart=/usr/bin/mothership \
-  -mpdaddr=localhost:6600 \
+  -mpdaddr=:6600 \
   -port :80 \
   {% if airbrake.env %}-abenv={{ airbrake.env }}{% endif %} \
   {% if airbrake.project_id %}-abprojectid={{ airbrake.project_id }}{% endif %} \
