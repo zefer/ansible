@@ -21,7 +21,7 @@
   lineinfile: >
     backup=true
     dest=/etc/fstab
-    line="//{{ nas.host }}/{{ item }} /mnt/{{ item }} cifs vers=1.0,username={{ nas.username }},password={{ nas.password }},x-systemd.automount 0 0"
+    line="//{{ nas.host }}/{{ item }} /mnt/{{ item }} cifs username={{ nas.username }},password={{ nas.password }},x-systemd.automount 0 0"
   with_items:
     - music
     - podcasts
@@ -32,7 +32,7 @@
   lineinfile: >
     backup=true
     dest=/etc/fstab
-    line="//{{ nas.host }}/{{ item }} /mnt/{{ item }} cifs vers=1.0,username={{ nas.username }},password={{ nas.password }},rw,file_mode=0777,dir_mode=0777,x-systemd.automount 0 0"
+    line="//{{ nas.host }}/{{ item }} /mnt/{{ item }} cifs username={{ nas.username }},password={{ nas.password }},rw,file_mode=0777,dir_mode=0777,x-systemd.automount 0 0"
   with_items:
     - playlists
 
